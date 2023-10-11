@@ -1,0 +1,7 @@
+goblin attacked ibo. New HP: 90
+kifu attacked Enemy1. New HP: 0
+alula healed ibo. New HP: 98
+jerome healed goblin. New HP: 24
+goblin healed Enemy1. New HP: 15
+goblin healed Enemy1. New HP: 16
+Enemy1 healed Enemy1. New HP: 116

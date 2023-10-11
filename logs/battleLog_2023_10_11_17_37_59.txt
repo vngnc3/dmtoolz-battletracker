@@ -1,0 +1,3 @@
+goblin1 attacked fufu. New HP: 96
+largeGoblin attacked alula. New HP: 95
+ibo healed alula. New HP: 110

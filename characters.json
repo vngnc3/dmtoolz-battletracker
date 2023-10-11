@@ -1,0 +1,44 @@
+{
+  "characters": [
+    {
+      "name": "ibo",
+      "HP": 100
+    },
+    {
+      "name": "kiki",
+      "HP": 100
+    },
+    {
+      "name": "fufu",
+      "HP": 100
+    },
+    {
+      "name": "alula",
+      "HP": 100
+    },
+    {
+      "name": "mita",
+      "HP": 100
+    },
+    {
+      "name": "farhan",
+      "HP": 100
+    },
+    {
+      "name": "goblin1",
+      "HP": 24
+    },
+    {
+      "name": "goblin2",
+      "HP": 23
+    },
+    {
+      "name": "goblin3",
+      "HP": 23
+    },
+    {
+      "name": "largeGoblin",
+      "HP": 80
+    }
+  ]
+}

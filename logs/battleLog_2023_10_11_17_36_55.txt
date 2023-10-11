@@ -1,0 +1,2 @@
+goblin healed ibo. New HP: 110
+Enemy1 attacked ibo. New HP: 20

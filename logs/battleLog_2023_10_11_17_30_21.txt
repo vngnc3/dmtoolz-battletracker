@@ -1,0 +1,2 @@
+goblin attacked ibo. New HP: 80
+ibo attacked goblin. New HP: -10

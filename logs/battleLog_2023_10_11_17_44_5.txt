@@ -1,0 +1,3 @@
+largeGoblin attacked ibo. New HP: 80
+mita attacked goblin1. New HP: 16
+ibo healed ibo. New HP: 86

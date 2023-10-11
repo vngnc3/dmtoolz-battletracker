@@ -1,0 +1,98 @@
+const fs = require("fs");
+const readline = require("readline");
+
+let rawdata = fs.readFileSync("characters.json");
+let characters = JSON.parse(rawdata).characters;
+
+const date = new Date();
+const fileName = `battleLog_${date.getFullYear()}_${
+  date.getMonth() + 1
+}_${date.getDate()}_${date.getHours()}_${date.getMinutes()}_${date.getSeconds()}.txt`;
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+
+const colors = [
+  "\x1b[31m", // Red
+  "\x1b[32m", // Green
+  "\x1b[33m", // Yellow
+  "\x1b[34m", // Blue
+  "\x1b[35m", // Magenta
+  "\x1b[36m", // Cyan
+];
+
+let battleLog = [];
+
+function clearTerminal() {
+  process.stdout.write("\x1b[2J\x1b[0f");
+}
+
+function addToLog(text) {
+  battleLog.push(text);
+  fs.appendFileSync(fileName, text + "\n");
+}
+
+function modifyHP(name, value, attacker) {
+  const character = characters.find((c) => c.name === name);
+  if (character) {
+    character.HP += value;
+    addToLog(`${attacker} attacked ${name}. New HP: ${character.HP}`);
+  }
+}
+
+function listHP() {
+  const hpList = characters
+    .map((c, index) => {
+      const color = colors[index % colors.length];
+      return `${color}${c.name}\x1b[0m: ${c.HP} HP`;
+    })
+    .join("\n");
+  console.log(`✦✦✦ Current HP ✦✦✦\n\n${hpList}`);
+}
+
+function showHelp() {
+  const helpText = `
+    izzy's DmToolz 🧠 Battle Tracker
+     
+    // Track and modify hit points of all characters in a combat.
+    // Initialize players and their HP in characters.json file.
+    // Saves battle log in a text file.
+  
+    Available Commands:
+    - modify [CharacterName] [Value] [Attacker]: Modifies the HP of a character. Value can be negative.
+    - log: Prints the battle log to the console.
+    - list: Lists current HP of all characters.
+    - help: Shows this help menu.
+     
+     
+    `;
+  console.log(helpText);
+}
+
+clearTerminal();
+showHelp();
+listHP();
+
+rl.on("line", function (line) {
+  const [command, name, value, attacker] = line.split(" ");
+
+  if (command === "modify") {
+    modifyHP(name, parseInt(value), attacker);
+  } else if (command === "log") {
+    console.log(battleLog.join("\n"));
+  } else if (command === "help") {
+    showHelp();
+  } else if (command === "list") {
+    listHP();
+  } else {
+    addToLog("Invalid command");
+  }
+
+  clearTerminal();
+  showHelp();
+  listHP();
+}).on("close", function () {
+  process.exit(0);
+});
